@@ -35,9 +35,9 @@ use autocxx::prelude::*; // use all the main autocxx functions
 include_cpp! {
     // #include "tiered_vec.h"
     #include "tiered_vec.cc"
-    safety!(unsafe)
     generate!("TieredVec28") // add this line for each function or type you wish to generate
     // generate!("new_tiered_vec_28") // add this line for each function or type you wish to generate
+    safety!(unsafe)
 }
 
 pub use ffi::*;

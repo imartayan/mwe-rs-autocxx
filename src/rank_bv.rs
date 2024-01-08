@@ -26,9 +26,9 @@ use autocxx::prelude::*; // use all the main autocxx functions
 include_cpp! {
     // #include "rank_bv.h"
     #include "rank_bv.cc"
-    safety!(unsafe)
     generate!("RankBV") // add this line for each function or type you wish to generate
     // generate!("new_rank_bv") // add this line for each function or type you wish to generate
+    safety!(unsafe)
 }
 
 pub use ffi::*;
