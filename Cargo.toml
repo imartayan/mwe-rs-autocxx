@@ -1,0 +1,27 @@
+[package]
+name = "mwe"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+autocxx = "0.26.0"
+cxx = "1.0"
+
+[build-dependencies]
+autocxx-build = "0.26.0"
+miette = { version = "5", features = [
+    "fancy",
+] } # optional but gives nicer error messages!
+
+[profile.dev]
+opt-level = 1
+lto = "thin"
+incremental = true
+
+[profile.release]
+opt-level = 3
+lto = "fat"
+panic = "abort"
+incremental = true
