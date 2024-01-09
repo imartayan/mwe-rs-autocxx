@@ -31,21 +31,13 @@ fn main() -> miette::Result<()> {
     let path_src = std::path::PathBuf::from("src"); // include path
     let path_cxx = std::path::PathBuf::from("cxx"); // include path
 
-    let mut b_rbv = autocxx_build::Builder::new("src/rank_bv.rs", [&path_src, &path_cxx])
+    let mut b = autocxx_build::Builder::new("src/ffi.rs", [&path_src, &path_cxx])
         .extra_clang_args(&["-std=c++17"])
         .build()?;
-    b_rbv
-        .flag_if_supported("-std=c++17")
-        .compile("autocxx-demo-rbv"); // arbitrary library name, pick anything
-    println!("cargo:rerun-if-changed=src/rank_bv.rs");
-
-    let mut b_tv = autocxx_build::Builder::new("src/tiered_vec.rs", [&path_src, &path_cxx])
-        .extra_clang_args(&["-std=c++14"])
-        .build()?;
-    b_tv.flag_if_supported("-std=c++14")
+    b.flag_if_supported("-std=c++17")
         .flag_if_supported("-Wno-unused-parameter")
-        .compile("autocxx-demo-tv"); // arbitrary library name, pick anything
-    println!("cargo:rerun-if-changed=src/tiered_vec.rs");
+        .compile("autocxx-demo"); // arbitrary library name, pick anything
+    println!("cargo:rerun-if-changed=src/ffi.rs");
 
     Ok(())
 }
