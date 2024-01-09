@@ -1,11 +1,10 @@
 #![allow(dead_code)]
-#![allow(unused_imports)]
 
 use autocxx::prelude::*;
 
 include_cpp! {
-    #include "rank_bv.cc"
-    #include "tiered_vec.cc"
+    #include "rank_bv.h"
+    #include "tiered_vec.h"
 
     generate!("RankBV")
     generate!("TieredVec16")
