@@ -39,13 +39,13 @@ fn main() -> miette::Result<()> {
         .compile("autocxx-demo-rbv"); // arbitrary library name, pick anything
     println!("cargo:rerun-if-changed=src/rank_bv.rs");
 
-    // let mut b_tv = autocxx_build::Builder::new("src/tiered_vec.rs", [&path_src, &path_cxx])
-    //     .extra_clang_args(&["-std=c++14"])
-    //     .build()?;
-    // b_tv.flag_if_supported("-std=c++14")
-    //     .flag_if_supported("-Wno-unused-parameter")
-    //     .compile("autocxx-demo-tv"); // arbitrary library name, pick anything
-    // println!("cargo:rerun-if-changed=src/tiered_vec.rs");
+    let mut b_tv = autocxx_build::Builder::new("src/tiered_vec.rs", [&path_src, &path_cxx])
+        .extra_clang_args(&["-std=c++14"])
+        .build()?;
+    b_tv.flag_if_supported("-std=c++14")
+        .flag_if_supported("-Wno-unused-parameter")
+        .compile("autocxx-demo-tv"); // arbitrary library name, pick anything
+    println!("cargo:rerun-if-changed=src/tiered_vec.rs");
 
     Ok(())
 }
